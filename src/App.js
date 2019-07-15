@@ -1,14 +1,34 @@
 import React, { Component } from "react";
-import "./App.css";
 
-class App extends Component {
+class HomePage extends Component {
   state = {
-    greeting: "Hello"
+    itemCurrentlyOnSale: "A Hammer",
+    saleYesOrNo: true
   };
 
+  toggleSaleYesOrNo = () => {
+    const saleYesOrNo = !this.state.saleYesOrNo;
+    this.setState({ saleYesOrNo });
+  };
   render() {
-    return <h1>{this.state.greeting} World</h1>;
+    return (
+      <div>
+        <h1>My Hardware Store</h1>
+        <div>
+          <span>Currently On Sale: {this.state.itemCurrentlyOnSale}!</span>
+          <span>
+            <button onClick={this.toggleSaleYesOrNo}>
+              {this.state.saleYesOrNo ? "Hide" : "Edit Sale Item"}
+            </button>
+          </span>
+          {this.state.saleYesOrNo ? (
+            <div>
+              <input type="text" />
+            </div>
+          ) : null}
+        </div>
+      </div>
+    );
   }
 }
-
-export default App;
+export default HomePage;
